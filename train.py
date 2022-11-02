@@ -118,8 +118,8 @@ for epoch in range(epochs):
             epoch_end - epoch_start
         ))
     print("Best Loss for validation : {:.4f} at epoch {:03d}".format(best_loss, best_epoch))
-    if epoch % 10 == 0:
-        torch.save(model, 'checkpoints/' + '_checkpoint_' + str(epoch) + '.pt')
+    if (epoch + 1) % 10 == 0:
+        torch.save(model, 'checkpoints/' + '_checkpoint_' + str(epoch + 1) + '.pt')
     # wandb log
     wandb.log({
         "Epoch": epoch,
