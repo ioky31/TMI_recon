@@ -14,7 +14,9 @@ class BasicDataset(Dataset):
         img = self.data[:, :, idx]
         label = self.labels[:, :, idx]
 
+        img = torch.as_tensor(img.copy()).float().unsqueeze(0).contiguous()
+        label = torch.as_tensor(label.copy()).float().unsqueeze(0).contiguous()
         return {
-            'image': torch.as_tensor(img.copy()).float().unsqueeze(0).contiguous(),
-            'label': torch.as_tensor(label.copy()).float().unsqueeze(0).contiguous()
+            'image': (img + 1)/2,
+            'label': (label + 1)/2
         }
