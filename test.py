@@ -13,7 +13,7 @@ dataset = BasicDataset(test_data)
 # Data loader
 test_data_size = len(dataset)
 testloader = DataLoader(dataset, batch_size=1, shuffle=True)
-model = torch.load('checkpoints/_checkpoint_21.pt')
+model = torch.load('checkpoints/_checkpoint_19.pt')
 model.eval()
 # Loss function
 # loss_func = nn.MSELoss()
@@ -38,7 +38,7 @@ for i, data in enumerate(tqdm(testloader)):
     test_loss += loss.item() * inputs.size(0)
     test_psnr += psnr(outputs, labels).item() * inputs.size(0)
     outputs = torch.squeeze(outputs)
-    totle_outputs[:, :, i] = outputs.cpu().detach()
+    totle_outputs[:, :, i] = outputs.cpu().detach() * 2 - 1
 avg_test_loss = test_loss / test_data_size
 avg_test_psnr = test_psnr / test_data_size
 # save outputs
