@@ -71,5 +71,4 @@ class Net(nn.Module):
         e9 = self.Module9(e8)
 
         out = self.End_conv(e9)
-
         return out
